@@ -9,7 +9,7 @@ const getVC = async (userId, userType, courseId) => {
   }
   if (
     userType === constants.instructor &&
-    course.instructorInfo.instructorId === userId
+    course.instructorInfo.instructorId.toString() === userId.toString()
   ) {
     if (course.published) {
       return viewerContexts.savedAuthor;

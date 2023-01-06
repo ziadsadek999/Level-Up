@@ -9,13 +9,21 @@ const User = require("../../models/User.model");
 const AccessRequest = require("../../models/AccessRequest.model");
 const Refund = require("../../models/Refund.model");
 const constant = require("../../constants.json");
+const { getVC } = require("../../utils/getViewerContext.util");
 const { coursePrice, courseDuration } = require("./courseUtils.controller");
 const getCourseDetails = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
     const displayedPrice = await coursePrice(course);
     const duration = await courseDuration(course);
-    res.status(201).json({ ...course.toJSON(), ...displayedPrice, duration });
+    const vc = await getVC(
+      req.session.userId,
+      req.session.userType,
+      req.params.id
+    );
+    res
+      .status(201)
+      .json({ ...course.toJSON(), ...displayedPrice, duration, vc });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -58,8 +58,7 @@ const CourseDetails = () => {
     try {
       setAllPageLoading(true);
       const fetchedCourse = await fetchCourseDetails(courseId);
-      const fetchedVc = getViewerContext(fetchedCourse);
-      setVc(fetchedVc);
+      setVc(fetchedCourse.vc);
       setCourse(fetchedCourse);
       let fetchedReviews = [];
       for (let i = 0; i < fetchedCourse.ratings.length; i++) {
