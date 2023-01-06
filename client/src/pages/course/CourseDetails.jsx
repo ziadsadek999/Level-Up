@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { ReactSession } from "react-client-session";
 import { getPrice, fetchCourseDetails } from "../../network";
 import SubtitleCard from "../../components/SubtitleCard/SubtitleCard";
-import { getViewerContext } from "../../utils/viewerContext";
 import "./CourseDetails.css";
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/Button";
