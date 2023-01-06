@@ -31,8 +31,8 @@ function RatingCard(props) {
   const [submitted, setSubmitted] = useState(false);
   const initializeRatings = async () => {
     const fetchedTraineeRating = await getTraineeRating(courseId);
-    setTraineeRating(fetchedTraineeRating?.rating);
-    setTraineeReview(fetchedTraineeRating?.review);
+    setTraineeRating(fetchedTraineeRating.rating);
+    setTraineeReview(fetchedTraineeRating.review);
   };
   let AddRatingStars = useMemo(() => {
     return () => (
