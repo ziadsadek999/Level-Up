@@ -17,16 +17,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import colors from "../../colors.json";
 
 function RatingCard(props) {
-  const {
-    courseId,
-    vc,
-    totalRating,
-    setTotalRating,
-    ratingsCount,
-    setRatingsCount,
-    reviews,
-    setReviews,
-  } = props;
+  const { courseId, vc, setTotalRating, setRatingsCount, setReviews } = props;
   const [traineeRating, setTraineeRating] = useState(null);
   const [traineeReview, setTraineeReview] = useState(null);
   const [newRating, setNewRating] = useState(null);

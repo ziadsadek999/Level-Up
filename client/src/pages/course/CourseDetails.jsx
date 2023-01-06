@@ -204,11 +204,8 @@ const CourseDetails = () => {
                 <RatingCard
                   courseId={courseId}
                   vc={vc}
-                  totalRating={totalRating}
                   setTotalRating={setTotalRating}
-                  ratingsCount={ratingsCount}
                   setRatingsCount={setRatingsCount}
-                  reviews={reviews}
                   setReviews={setReviews}
                 />
               </h3>
