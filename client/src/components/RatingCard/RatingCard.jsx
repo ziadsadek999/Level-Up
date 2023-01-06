@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import { ReactSession } from "react-client-session";
 import { useState, useEffect, useMemo } from "react";
-import { addRating, fetchCourseDetails, deleteRating } from "../../network";
+import { addRating, deleteRating, getTraineeRating } from "../../network";
 import ViewerContexts from "../../constants/ViewerContexts.json";
 import ReactStars from "react-rating-stars-component";
 import Modal from "react-bootstrap/Modal";
@@ -40,13 +40,9 @@ function RatingCard(props) {
   const [msg, setMsg] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const initializeRatings = async () => {
-    const fetchedCourse = await fetchCourseDetails(courseId);
-    for (let i = 0; i < fetchedCourse.ratings.length; i++) {
-      if (fetchedCourse.ratings[i].traineeId === ReactSession.get("userId")) {
-        setTraineeRating(fetchedCourse.ratings[i].rating);
-        setTraineeReview(fetchedCourse.ratings[i].review);
-      }
-    }
+    const fetchedTraineeRating = await getTraineeRating(courseId);
+    setTraineeRating(fetchedTraineeRating?.rating);
+    setTraineeReview(fetchedTraineeRating?.review);
   };
   let AddRatingStars = useMemo(() => {
     return () => (

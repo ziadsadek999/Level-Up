@@ -481,3 +481,9 @@ export const publishCourse = async (courseId) => {
   const res = await instance.patch(`course/${courseId}/publishCourse`);
   return res.data;
 };
+
+// get trainee rating
+export const getTraineeRating = async (data) => {
+  const res = await instance.get(`course/${courseId}/getTraineeRating`, data);
+  return res.data;
+};
