@@ -38,8 +38,6 @@ function RequestAccess(props) {
           courseId: props.course._id,
           reason: reason,
           courseName: props.course.name,
-          userName: ReactSession.get("userName"),
-          corporateName: ReactSession.get("corporateName"),
         });
         props.setVc(ViewerContexts.pendingCorporateTrainee);
         setValidated(false);

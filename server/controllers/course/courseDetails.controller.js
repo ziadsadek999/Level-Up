@@ -399,10 +399,10 @@ const requestAccess = async (req, res) => {
     const request = await AccessRequest.create({
       userId: req.session.userId,
       courseId: req.body.courseId,
-      userName: req.body.userName,
+      userName: user.firstName + " " + user.lastName,
       courseName: req.body.courseName,
       reason: req.body.reason,
-      corporateName: req.body.corporateName,
+      corporateName: user.corporateName,
       uniqueUserName: user.username,
     });
     const course = await Course.findById(req.body.courseId);
