@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { postReport } from "../../../network";
 import ProblemTypes from "../../../constants/ProblemTypes.json";
-import { ReactSession } from "react-client-session";
 import "./ReportCourse.css";
 import { FiAlertCircle } from "react-icons/fi";
 import { Card, Overlay, Spinner, Tooltip } from "react-bootstrap";

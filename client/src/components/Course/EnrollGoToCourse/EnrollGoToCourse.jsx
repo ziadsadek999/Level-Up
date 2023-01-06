@@ -4,7 +4,6 @@ import UserTypes from "../../../constants/UserTypes.json";
 import { Button, Spinner } from "react-bootstrap";
 import RequestAccess from "../RequestAccess/RequestAccess";
 import { useNavigate } from "react-router-dom";
-import { ReactSession } from "react-client-session";
 import "./EnrollGoToCourse.css";
 function EnrollGoToCourse(props) {
   const { vc, enroll, loadingEnrollBtn, courseId, course, setVc } = props;

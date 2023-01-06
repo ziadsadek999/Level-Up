@@ -5,7 +5,6 @@ import { Button, Modal, Spinner } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import ViewerContexts from "../../../constants/ViewerContexts.json";
 import { postAccessRequest, deleteAccessRequest } from "../../../network";
-import { ReactSession } from "react-client-session";
 import "./RequestAccess.css";
 import SuccessModal from "../../SuccessModal/SuccessModal";
 import ErrorModal from "../../ErrorModal/ErrorModal";

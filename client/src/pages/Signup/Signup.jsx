@@ -45,11 +45,6 @@ const Signup = (props) => {
       const userData = await signup(loginData);
       ReactSession.set("userType", userData.data.userType);
       props.setUserType(userData.data.userType);
-      ReactSession.set("userId", userData.data.userId);
-      ReactSession.set(
-        "userName",
-        userData.data.firstName + " " + userData.data.lastName
-      );
       setLoading(false);
       navigate("/");
     } catch (err) {

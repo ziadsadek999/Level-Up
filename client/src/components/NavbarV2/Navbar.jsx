@@ -18,8 +18,6 @@ const AppNavbar = (props) => {
   const logout = async () => {
     await networkLogout();
     props.setUserType("");
-    ReactSession.set("userId", "");
-    ReactSession.set("userName", "");
     navigate("/login");
   };
 

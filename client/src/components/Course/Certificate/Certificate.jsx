@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import jsPDF from "jspdf";
 import certificateTemp from "./certificate-template/certificate.png";
-import { ReactSession } from "react-client-session";
 import "./Certificate.css";
 import { sendCertificate } from "../../../network";
 import ReactLoading from "react-loading";

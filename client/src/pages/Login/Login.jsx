@@ -33,15 +33,7 @@ const Login = (props) => {
     try {
       const userData = await login(loginData);
       ReactSession.set("userType", userData.data.userType);
-      if (userData.data.userType == userTypes.corporateTrainee) {
-        ReactSession.set("corporateName", userData.data.corporateName);
-      }
       props.setUserType(userData.data.userType);
-      ReactSession.set("userId", userData.data.userId);
-      ReactSession.set(
-        "userName",
-        userData.data.firstName + " " + userData.data.lastName
-      );
       setLoading(false);
       if (userData.data.userType === userTypes.admin) {
         navigate("/adminHome");
