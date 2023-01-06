@@ -25,6 +25,8 @@ function RatingCard(props) {
     setTotalRating,
     ratingsCount,
     setRatingsCount,
+    reviews,
+    setReviews,
   } = props;
   const [traineeRating, setTraineeRating] = useState(null);
   const [traineeReview, setTraineeReview] = useState(null);
@@ -39,8 +41,6 @@ function RatingCard(props) {
   const [submitted, setSubmitted] = useState(false);
   const initializeRatings = async () => {
     const fetchedCourse = await fetchCourseDetails(courseId);
-    setTotalRating(fetchedCourse.totalRating);
-    setRatingsCount(fetchedCourse.ratings.length);
     for (let i = 0; i < fetchedCourse.ratings.length; i++) {
       if (fetchedCourse.ratings[i].traineeId === ReactSession.get("userId")) {
         setTraineeRating(fetchedCourse.ratings[i].rating);
@@ -92,26 +92,26 @@ function RatingCard(props) {
       const addedRating = newRating ?? traineeRating ?? 0;
       let newReviews = [];
       let found = false;
-      for (let i = 0; i < props.reviews.length; i++) {
-        if (props.reviews[i].traineeId === ReactSession.get("userId")) {
+      for (let i = 0; i < reviews.length; i++) {
+        if (reviews[i].traineeId === ReactSession.get("userId")) {
           if (addedReview && addedReview !== "") {
             newReviews.push({
-              traineeName: props.reviews[i].traineeName,
-              traineeId: props.reviews[i].traineeId,
+              traineeName: reviews[i].traineeName,
+              traineeId: reviews[i].traineeId,
               review: addedReview,
               rating: addedRating,
             });
           } else {
             newReviews.push({
-              traineeName: props.reviews[i].traineeName,
-              traineeId: props.reviews[i].traineeId,
-              review: props.reviews[i].review,
+              traineeName: reviews[i].traineeName,
+              traineeId: reviews[i].traineeId,
+              review: reviews[i].review,
               rating: addedRating,
             });
           }
           found = true;
         } else {
-          newReviews.push(props.reviews[i]);
+          newReviews.push(reviews[i]);
         }
       }
       if (!found) {
@@ -137,7 +137,7 @@ function RatingCard(props) {
         rating: addedRating ?? 0,
         review: addedReview,
       });
-      props.setReviews(newReviews);
+      setReviews(newReviews);
       setTraineeRating(addedRating);
       setTraineeReview(addedReview);
       setNewRating(null);
@@ -163,14 +163,14 @@ function RatingCard(props) {
       }
 
       let newReviews = [];
-      for (let i = 0; i < props.reviews.length; i++) {
-        if (props.reviews[i].traineeId !== ReactSession.get("userId")) {
-          newReviews.push(props.reviews[i]);
+      for (let i = 0; i < reviews.length; i++) {
+        if (reviews[i].traineeId !== ReactSession.get("userId")) {
+          newReviews.push(reviews[i]);
         }
       }
       await deleteRating({ courseId: courseId });
       setRatingsCount(ratingsCount - 1);
-      props.setReviews(newReviews);
+      setReviews(newReviews);
       setTraineeRating(null);
       setTraineeReview(null);
       setNewRating(null);

@@ -78,6 +78,8 @@ const CourseDetails = () => {
       setReviews(fetchedReviews);
       setSubtitles(fetchedCourse.subtitles);
       setPromotion(fetchedCourse.promotion);
+      setTotalRating(fetchedCourse.totalRating);
+      setRatingsCount(fetchedCourse.ratings.length);
       setAllPageLoading(false);
     } catch (err) {
       console.log(err);
