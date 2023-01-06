@@ -45,6 +45,7 @@ const {
   cancelRefund,
   requestRefund,
   publishCourse,
+  getTraineeRating,
 } = require("../controllers/course/courseDetails.controller");
 
 router.get("/subtitle/excercise/:id/getMark", getMark);
@@ -57,6 +58,7 @@ router.delete(
 );
 
 router.delete("/:id/cancelRefundRequest", canCancelRefund, cancelRefund);
+router.get("/:id/getTraineeRating", getTraineeRating);
 router.get("/subtitle/excercise/:id", getExcercise);
 router.patch("/subtitle/video/:id/addNote", updateNote);
 router.get("/subtitle/video/:id/getNote", getNote);

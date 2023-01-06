@@ -520,6 +520,22 @@ const publishCourse = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Get trainee rating
+const getTraineeRating = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    let ratings = course.ratings;
+    ratings.filter((rating) => {
+      return rating.traineeId?.toString() === req.session.userId?.toString();
+    });
+    res
+      .status(200)
+      .json({ traineeRating: ratings.length > 0 ? ratings[0] : null });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 module.exports = {
   getSubtitle,
   getVideo,
@@ -546,4 +562,5 @@ module.exports = {
   cancelRefund,
   requestRefund,
   publishCourse,
+  getTraineeRating,
 };
