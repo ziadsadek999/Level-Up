@@ -4,27 +4,31 @@ const constants = require("../constants.json");
 
 const getVC = async (userId, userType, courseId) => {
   const course = await Course.findById(courseId);
-  if (!userId) {
-    return viewerContexts.guest;
-  }
   if (userType === constants.admin) {
     return viewerContexts.admin;
   }
-  if (course.instructorInfo?.instructorId == userId) {
+  if (
+    userType === constants.instructor &&
+    course.instructorInfo.instructorId === userId
+  ) {
+    if (course.published) {
+      return viewerContexts.savedAuthor;
+    }
     return viewerContexts.author;
   }
-  if (!course.trainees.includes(userId)) {
-    if (userType === constants.corporateTrainee) {
-      if (course.pendingTrainees.includes(userId)) {
-        return viewerContexts.pendingCorporateTrainee;
-      } else {
-        return viewerContexts.nonEnrolledCorporateTrainee;
-      }
-    } else {
-      return viewerContexts.guest;
-    }
+  if (course.refundingTrainees?.includes(userId)) {
+    return viewerContexts.refundingTrainee;
   }
-  return viewerContexts.enrolledTrainee;
+  if (course.trainees.includes(userId)) {
+    return viewerContexts.enrolledTrainee;
+  }
+  if (userType === constants.corporateTrainee) {
+    if (course.pendingTrainees?.includes(userId)) {
+      return viewerContexts.pendingCorporateTrainee;
+    }
+    return viewerContexts.nonEnrolledCorporateTrainee;
+  }
+  return viewerContexts.guest;
 };
 
 module.exports = { getVC };
