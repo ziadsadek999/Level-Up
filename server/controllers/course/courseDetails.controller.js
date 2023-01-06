@@ -81,10 +81,9 @@ const addReview = async (req, res) => {
           traineeRating +
           req.body.rating) /
         ratings.length;
-      await Course.findByIdAndUpdate(course._id, {
-        ratings: newRatings,
-        totalRating: totalRating,
-      });
+      course.ratings = newRatings;
+      course.totalRating = totalRating;
+      await course.save();
     } else {
       const totalRating =
         (course.totalRating * ratings.length + req.body.rating) /
@@ -96,12 +95,13 @@ const addReview = async (req, res) => {
         rating: req.body.rating,
         review: req.body.review,
       });
-      await Course.findByIdAndUpdate(course._id, {
-        ratings: newRatings,
-        totalRating: totalRating,
-      });
+      course.ratings = newRatings;
+      course.totalRating = totalRating;
+      await course.save();
     }
-    res.status(201).json({ message: "success" });
+    res
+      .status(201)
+      .json({ ratings: course.ratings, totalRating: course.totalRating });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -123,11 +123,12 @@ const deleteRating = async (req, res) => {
         ? 0
         : (course.totalRating * (ratings.length + 1) - traineeRating) /
           ratings.length;
-    await Course.findByIdAndUpdate(course._id, {
-      ratings: ratings,
-      totalRating: totalRating,
-    });
-    res.status(201).json({ message: "success" });
+    course.ratings = ratings;
+    course.totalRating = totalRating;
+    await course.save();
+    res
+      .status(201)
+      .json({ ratings: course.ratings, totalRating: course.totalRating });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

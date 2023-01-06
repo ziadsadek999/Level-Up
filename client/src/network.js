@@ -483,7 +483,7 @@ export const publishCourse = async (courseId) => {
 };
 
 // get trainee rating
-export const getTraineeRating = async (data) => {
+export const getTraineeRating = async (courseId) => {
   const res = await instance.get(`course/${courseId}/getTraineeRating`, data);
   return res.data;
 };

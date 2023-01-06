@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { ReactSession } from "react-client-session";
 import { useState, useEffect, useMemo } from "react";
 import { addRating, deleteRating, getTraineeRating } from "../../network";
 import ViewerContexts from "../../constants/ViewerContexts.json";
@@ -71,69 +70,16 @@ function RatingCard(props) {
   const rate = async () => {
     setSaveLoading(true);
     try {
-      if (traineeRating == null) {
-        const newTotalRating =
-          (totalRating * ratingsCount + (newRating ?? 0)) / (ratingsCount + 1);
-        setTotalRating(newTotalRating);
-        setRatingsCount(ratingsCount + 1);
-      } else {
-        const newTotalRating =
-          (totalRating * ratingsCount +
-            (newRating ?? traineeRating) -
-            traineeRating) /
-          ratingsCount;
-        setTotalRating(newTotalRating);
-      }
       const addedReview = newReview ?? traineeReview;
       const addedRating = newRating ?? traineeRating ?? 0;
-      let newReviews = [];
-      let found = false;
-      for (let i = 0; i < reviews.length; i++) {
-        if (reviews[i].traineeId === ReactSession.get("userId")) {
-          if (addedReview && addedReview !== "") {
-            newReviews.push({
-              traineeName: reviews[i].traineeName,
-              traineeId: reviews[i].traineeId,
-              review: addedReview,
-              rating: addedRating,
-            });
-          } else {
-            newReviews.push({
-              traineeName: reviews[i].traineeName,
-              traineeId: reviews[i].traineeId,
-              review: reviews[i].review,
-              rating: addedRating,
-            });
-          }
-          found = true;
-        } else {
-          newReviews.push(reviews[i]);
-        }
-      }
-      if (!found) {
-        if (addedReview && addedReview !== "") {
-          newReviews.push({
-            traineeName: ReactSession.get("userName"),
-            traineeId: ReactSession.get("userId"),
-            review: addedReview,
-            rating: addedRating,
-          });
-        } else {
-          newReviews.push({
-            traineeName: ReactSession.get("userName"),
-            traineeId: ReactSession.get("userId"),
-            review: null,
-            rating: addedRating,
-          });
-        }
-      }
-
-      await addRating({
+      const response = await addRating({
         courseId: courseId,
         rating: addedRating ?? 0,
         review: addedReview,
       });
-      setReviews(newReviews);
+      setRatingsCount(response.ratings.length);
+      setReviews(response.ratings);
+      setTotalRating(response.totalRating);
       setTraineeRating(addedRating);
       setTraineeReview(addedReview);
       setNewRating(null);
@@ -150,23 +96,10 @@ function RatingCard(props) {
   const deleteReview = async () => {
     setDeleteLoading(true);
     try {
-      if (ratingsCount > 1) {
-        const newTotalRating =
-          (totalRating * ratingsCount - traineeRating) / (ratingsCount - 1);
-        setTotalRating(newTotalRating);
-      } else {
-        setTotalRating(0);
-      }
-
-      let newReviews = [];
-      for (let i = 0; i < reviews.length; i++) {
-        if (reviews[i].traineeId !== ReactSession.get("userId")) {
-          newReviews.push(reviews[i]);
-        }
-      }
-      await deleteRating({ courseId: courseId });
-      setRatingsCount(ratingsCount - 1);
-      setReviews(newReviews);
+      const response = await deleteRating({ courseId: courseId });
+      setRatingsCount(response.ratings.length);
+      setReviews(response.ratings);
+      setTotalRating(response.totalRating);
       setTraineeRating(null);
       setTraineeReview(null);
       setNewRating(null);
