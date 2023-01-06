@@ -19,11 +19,6 @@ exports.login = asyncHandler(async (req, res) => {
     req.session.corporateName = user.corporateName;
     res.status(201).json({
       userType: user.userType ?? "admin",
-      userId: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      userName: user.username,
-      corporateName: user.corporateName,
     });
   } else {
     res.status(500).json({ error: "Incorrect username or password." });

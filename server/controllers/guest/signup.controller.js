@@ -26,10 +26,6 @@ exports.signup = asyncHandler(async (req, res) => {
       (user.firstName ?? user.username) + " " + (user.lastName ?? "");
     res.status(200).json({
       userType: user.userType ?? "admin",
-      userId: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      userName: user.username,
     });
   } catch (err) {
     res.status(500).json({ error: "Something went wrong" });
