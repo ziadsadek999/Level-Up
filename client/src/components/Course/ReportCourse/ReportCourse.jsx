@@ -44,7 +44,6 @@ function ReportCourse(props) {
           problemBody: problemBody,
           problemSummary: problemSummary,
           courseName: props.course.name,
-          userName: ReactSession.get("userName"),
         });
         setValidated(false);
         setProblemBody(null);

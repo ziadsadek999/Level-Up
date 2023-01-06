@@ -380,7 +380,7 @@ const submitReport = async (req, res) => {
       courseId: req.body.courseId,
       problemType: req.body.problemType,
       body: req.body.problemBody,
-      userName: req.body.userName,
+      userName: user.firstName + " " + user.lastName,
       courseName: req.body.courseName,
       summary: req.body.problemSummary,
       uniqueUserName: user.username,
