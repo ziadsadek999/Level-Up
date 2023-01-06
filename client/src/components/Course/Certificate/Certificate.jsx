@@ -14,6 +14,7 @@ const Certificate = (props) => {
   const [show, setShow] = useState(false);
   const [showMail, setShowMail] = useState(false);
   const [mailLoading, setMailLoading] = useState(false);
+  const [userName, setUserName] = useState(null);
   const courseName = props.courseName;
   const percentage = props.percentage;
 
@@ -24,7 +25,8 @@ const Certificate = (props) => {
   const handleCloseMail = () => setShowMail(false);
 
   const handlesendCertificate = async () => {
-    await sendCertificate(ReactSession.get("userName"), courseName);
+    const response = await sendCertificate(courseName);
+    setUserName(response.userName);
     handleClose();
     handleShowMail();
     setMailLoading(false);
@@ -36,12 +38,12 @@ const Certificate = (props) => {
     let height = doc.internal.pageSize.getHeight();
     doc.addImage(certificateTemp, "PNG", 0, 0, width, height);
     doc.setFontSize(25);
-    doc.text(ReactSession.get("userName"), width / 2, height / 2, {
+    doc.text(userName, width / 2, height / 2, {
       align: "center",
     });
     doc.setFontSize(25);
     doc.text(courseName, width / 2, height / 2 + 25, { align: "center" });
-    doc.save(ReactSession.get("userName") + " certificate");
+    doc.save(userName + " certificate");
   };
 
   return (
@@ -121,7 +123,7 @@ const Certificate = (props) => {
         </Modal.Body>
         <Modal.Footer id="modal-Certificate">
           <Button
-          className="blueBg blueBgHover"
+            className="blueBg blueBgHover"
             variant="warning"
             onClick={() => {
               handleCloseMail();

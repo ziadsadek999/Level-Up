@@ -3,14 +3,13 @@ const User = require("../../models/User.model");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const { default: jsPDF } = require("jspdf");
-const fs = require('fs');
+const fs = require("fs");
 
-
-const handlesendCertificate =  (userName, courseName) => {
+const handlesendCertificate = (userName, courseName) => {
   var doc = new jsPDF({ orientation: "l", format: "a4", compress: true });
   let width = doc.internal.pageSize.getWidth();
   let height = doc.internal.pageSize.getHeight();
-  const certificateTemp = base64_encode('../../assets/certificate.png')
+  const certificateTemp = base64_encode("../../assets/certificate.png");
   doc.addImage(certificateTemp, "PNG", 0, 0, width, height);
   doc.setFontSize(25);
   doc.text(userName, width / 2, height / 2, {
@@ -23,11 +22,11 @@ const handlesendCertificate =  (userName, courseName) => {
 };
 
 const base64_encode = (file) => {
-     // read binary data
-     var bitmap = fs.readFileSync(require.resolve(file), { encoding: 'base64' });
-     // convert binary data to base64 encoded string
-     return bitmap;
-}
+  // read binary data
+  var bitmap = fs.readFileSync(require.resolve(file), { encoding: "base64" });
+  // convert binary data to base64 encoded string
+  return bitmap;
+};
 
 exports.sendCertificate = asyncHandler(async (req, res) => {
   const user = await User.findById(req.session.userId);
@@ -37,7 +36,7 @@ exports.sendCertificate = asyncHandler(async (req, res) => {
     throw new Error("user doesn't exist");
   }
 
-  const userName = req.body.userName;
+  const userName = user.firstName + " " + user.lastName;
   const courseName = req.body.courseName;
 
   const pdf = handlesendCertificate(userName, courseName);
@@ -68,5 +67,5 @@ exports.sendCertificate = asyncHandler(async (req, res) => {
   };
   // send mail with defined transport object
   await transporter.sendMail(msg);
-  res.status(200).json();
+  res.status(200).json({ userName: userName });
 });

@@ -104,11 +104,11 @@ export const sendPasswordResetLink = async (data) => {
   return res;
 };
 
-export const sendCertificate = async (userName, courseName) => {
+export const sendCertificate = async (courseName) => {
   const res = await instance.post("/trainee/sendCertificate", {
-    userName: userName,
     courseName: courseName,
   });
+  return res.data;
 };
 
 export const getPrice = async (price) => {
