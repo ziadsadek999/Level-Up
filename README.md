@@ -52,7 +52,7 @@ In the past decade people all around the world satrted heading for learning new 
   - Approve refund requests.
   - View the reported issues.
 
-# Screenshots & How to Use
+# Screenshots
 
 ### Explore
 
