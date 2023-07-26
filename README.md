@@ -4,15 +4,15 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Level Up is an online learning platform that an instructor can use to publish their courses and trainees can use to enrol in these courses to improve their knowledge and skills, also corporates can use it to train their employees and give them access to some learning material published on our website.
+Level Up is an online learning platform that an instructor can use to publish their courses and trainees can use to enroll in these courses to improve their knowledge and skills, also corporates can use it to train their employees and give them access to some learning material published on our website.
 
 # Motivation
 
-In the past decade people all around the world satrted heading for learning new skills through online learning platfrom and instructor started posting valuable learning materials all over the internet. The Main idea behind Level Up is to allow instructors to post the content from outside open sources and create a unified platform for online learning and that contains multiple materials from different sources.
+In the past decade, people worldwide started heading for learning new skills through online learning platforms and instructors started posting valuable learning materials all over the internet. The Main idea behind Level Up is to allow instructors to post content from outside open sources and create a unified online learning platform containing multiple materials from different sources.
 
 # Features
 
-- If you are an instructor , you can:
+- If you are an instructor, you can:
   - Create a course and sets its price.
   - Set promotions on your courses.
   - Upload the course content.
@@ -21,9 +21,9 @@ In the past decade people all around the world satrted heading for learning new 
   - See the number of enrolled trainees in each course.
   - See their ratings and reviews.
   - Search and view their courses.
-  - Report any issue.
-- If you are a trainee , you can:
-  - Browse, search and filter all the courses published on the website.
+  - Report any issues.
+- If you are a trainee, you can:
+  - Browse, search, and filter all the courses published on the website.
   - View the details of any course.
   - See the trending courses.
   - Pay and enroll in a course.
@@ -31,18 +31,18 @@ In the past decade people all around the world satrted heading for learning new 
   - Rate and review the courses they are enrolled in.
   - Rate and review the instructors of the courses they are enrolled in.
   - View the ratings and reviews of any course or instructor.
-  - Report any issue.
+  - Report any issues.
   - Refund a course and get its amount back in their wallet.
 - If you are a corporate trainee, you can:
-  - Browse, search and filter all the courses published on the website.
+  - Browse, search, and filter all the courses published on the website.
   - View the details of any course.
   - See the trending courses.
-  - Request access for a course.
+  - Request access to a course.
   - View the content and solve the exercises of their enrolled courses.
   - Rate and review the courses they are enrolled in.
   - Rate and review the instructors of the courses they are enrolled in.
   - View the ratings and reviews of any course or instructor.
-  - Report any issue.
+  - Report any issues.
 - If you are an admin, you can:
   - Add other admins to the system.
   - Add instructors.
@@ -98,7 +98,7 @@ In the past decade people all around the world satrted heading for learning new 
 
   <img src = "./client/public/assets/Reports.png" style = "width: 100%;">
 
-### Admin view corporate trainees access requests for courses
+### Admin view corporate trainees' access requests for courses
 
   <img src = "./client/public/assets/AccessReq.png" style = "width: 100%;">
 
@@ -108,11 +108,11 @@ In the past decade people all around the world satrted heading for learning new 
 
 # Code Style
 
-The application is built in Client/Server architecture, where the server logic is written in `server` directory and the client is in `client` directory.
+The application is built in Client/Server architecture, where the server logic is written in the `server` directory and the client is in the `client` directory.
 
 ## Technology
 
-Level Up uses a number of open source projects to work properly:
+Level Up uses a number of open-source projects to work properly:
 
 - [React](https://reactjs.org/) - Front-end
 - [mui](https://mui.com/) - UI
@@ -163,12 +163,12 @@ with the help of all the amazing and supportive TAs and the great professor Dr. 
 
 # Contribute
 
-If you want to cotribute to this project send us email on (onlinelearningsystem10@gmail.com). And if you have suggestion don't hesitate to open issue about it.
+If you want to contribute to this project, email us at (onlinelearningsystem10@gmail.com). And if you have suggestions don't hesitate to open an issue about it.
 
 # License
 
 This application is licensed under [MIT](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt) and [Stripe](https://github.com/stripe/stripe-js/blob/master/LICENSE) Licenses.
 
-[//]: # "These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax"
+[//]: # "These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format it nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax"
 [node.js]: http://nodejs.org
 [express]: http://expressjs.com
